@@ -19,27 +19,16 @@ public class PhoneBookController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//	파라미터 확인
-		//	a=form이면 새 주소 추가 화면으로 FORWARD
 		String actionName = req.getParameter("a");
 		
 		if ("form".equals(actionName)) {
-			//	a=form이면
-			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/phonelist/form.jsp");
-			//	전달
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/views/phonelist/form.jsp");
 			rd.forward(req, resp);
 		} else {
-			//	DAO에서 목록을 받아서 jsp에 전달
 			PhoneBookDAO dao = new PhoneBookDAOImpl();
 			List<PhoneBookVO> list = dao.getList();
-			// 요청에 list를 추가
-			// list 객체를 list 키로 추가
 			req.setAttribute("list", list);
-			// JSP로 요청을 전달(FORWARD)
-
-			// Dispatcher 확보
-			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/phonelist/index.jsp");
-			// FORWARD
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/views/phonelist/index.jsp");
 			rd.forward(req, resp);
 		}
 	}
@@ -53,41 +42,33 @@ public class PhoneBookController extends HttpServlet {
 			String hp = req.getParameter("hp");
 			String tel = req.getParameter("tel");
 			
-			//	VO 객체 생성
 			PhoneBookVO vo = new PhoneBookVO();
 			vo.setName(name);
 			vo.setHp(hp);
 			vo.setTel(tel);
 			
-			//	INSERT 처리
 			PhoneBookDAO dao = new PhoneBookDAOImpl();
 			boolean success = dao.insert(vo);
 			
-			//	체크
 			if (success) {
-				// 성공
-				// 처리 후 list페이지로 리다이렉트
-				resp.sendRedirect(req.getContextPath() + "/WEB-INF/views/phonelist/index.jsp");
+				resp.sendRedirect(req.getContextPath());
 			} else {
-				//	실패
-				//	폼으로 리다이렉트
 				resp.sendRedirect(req.getContextPath() + "/WEB-INF/views/phonelist/form.jsp");
 			}
 		} else if ("delete".equals(actionName)) {
-			//	a=delete면
 			Long id = Long.valueOf(req.getParameter("id"));
 			
 			PhoneBookDAO dao = new PhoneBookDAOImpl();
 			dao.delete(id);
-			
-			//	리스트 페이지로 리다이렉트
-			resp.sendRedirect(req.getContextPath() + "/WEB-INF/views/phonelist/index.jsp");
+			resp.sendRedirect(req.getContextPath());
 		} else if ("search".equals(actionName)) {
 			String keyword = req.getParameter("keyword");
 			
 			PhoneBookDAO dao = new PhoneBookDAOImpl();
 			List<PhoneBookVO> list = dao.search(keyword);
 			req.setAttribute("list", list);
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/views/phonelist/index.jsp");
+			rd.forward(req, resp);
 		} else {
 			doGet(req, resp);
 		}

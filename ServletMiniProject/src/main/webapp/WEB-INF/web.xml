@@ -3,7 +3,7 @@
   <display-name>ServletMiniProject</display-name>
   
   <welcome-file-list>
-    <welcome-file>/WEB-INF/views/phonelist/index.jsp</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
   
   <!-- Context 초기화 파라미터:
@@ -20,11 +20,11 @@
   </context-param>
   
   <servlet>
-  	<servlet-name>Controller</servlet-name>
+  	<servlet-name>PhoneBookController</servlet-name>
   	<servlet-class>com.phone.controller.PhoneBookController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>Controller</servlet-name>
+  	<servlet-name>PhoneBookController</servlet-name>
   	<url-pattern>/</url-pattern>
   </servlet-mapping>
   

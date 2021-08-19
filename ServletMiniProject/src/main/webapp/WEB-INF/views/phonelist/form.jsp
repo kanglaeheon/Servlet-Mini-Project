@@ -9,7 +9,7 @@
 <body>
 	<h2>주소록 Servlet</h2>
 	<h4>새 주소 등록</h4>
-	<form action="<%= request.getContextPath() %>/WEB-INF/views/phonelist/form.jsp"
+	<form action="<%= request.getContextPath() %>/?a=form"
 		method="POST">
 		<!-- hidden은 사용자 입력은 아니지만 전송해야 할 데이터 -->
 		<input type="hidden" value="form" name="a" />
@@ -25,7 +25,7 @@
 	</form>	
 
 	<p>
-		<a href="<%= request.getContextPath() %>">목록 보기</a>
+		<a href="<%= request.getContextPath() %>/pl">목록 보기</a>
 	</p>
 </body>
 </html>
