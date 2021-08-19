@@ -3,6 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+// PhoneBookDAO dao = new PhoneBookDAOImpl();
+// List<PhoneBookVO> list = dao.getList();
 List<PhoneBookVO> list = (List<PhoneBookVO>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
@@ -14,12 +16,13 @@ List<PhoneBookVO> list = (List<PhoneBookVO>)request.getAttribute("list");
 <body>
 	<h2>주소록 Servlet</h2>
 	<h4>목록</h4>
-	<!-- 검색 창 삽입 예정 -->
-	<p>검색어</p>
-	<input type="hidden" value="search" name="a" />
-	<input type="text" name="keyword" id="keyword"/>
-	<input type="submit" value="검색"/>
-	
+	<!-- 검색  -->
+	<form action="<%= request.getContextPath() %>/ServletMiniProject" method=POST>
+		<label>검색어</label>
+		<input type="hidden" name="a" value="search" />
+		<input type="text" name="keyword" id="keyword"/>
+		<input type="submit" value="검색"/>
+	</form>
 	<!-- 리스트 -->
 	<% for (PhoneBookVO vo: list) { %>
 	<table border="1">
@@ -38,7 +41,7 @@ List<PhoneBookVO> list = (List<PhoneBookVO>)request.getAttribute("list");
 		<tr>
 			<th>도구</th>
 			<td>
-				<form action="<%= request.getContextPath() %>/WEB-INF/phonelist/delete.jsp"
+				<form action="<%= request.getContextPath() %>/ServletMiniProject"
 				method="POST">
 					<input type="hidden" name="a" value="delete" />	
 					<input type="hidden" name="id" value="<%= vo.getId() %>" />

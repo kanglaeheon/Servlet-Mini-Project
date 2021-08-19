@@ -9,10 +9,10 @@
 <body>
 	<h2>주소록 Servlet</h2>
 	<h4>새 주소 등록</h4>
-	<form action="<%= request.getContextPath() %>/"
+	<form action="<%= request.getContextPath() %>/WEB-INF/views/phonelist/form.jsp"
 		method="POST">
 		<!-- hidden은 사용자 입력은 아니지만 전송해야 할 데이터 -->
-		<input type="hidden" value="add" name="a" />
+		<input type="hidden" value="form" name="a" />
 		<label for="name">이름</label>
 		<input type="text" name="name" id="name" /><br />
 		<label for="hp">휴대전화</label>

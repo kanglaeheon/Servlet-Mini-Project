@@ -39,21 +39,11 @@ public class PhoneBookDAOImpl implements PhoneBookDAO {
 			rs = stmt.executeQuery(sql);
 			
 			//	루프 : 객체화
-			while(rs.next()) {
-				StringBuffer sbHp = new StringBuffer();
-				sbHp.append(rs.getString(3));
-				sbHp.replace(sbHp.length() -1, sbHp.length(), "**")
-					.replace(sbHp.length() -6, sbHp.length() -5, "**");
-				
-				StringBuffer sbTel = new StringBuffer();
-				sbTel.append(rs.getString(4));
-				sbTel.replace(sbTel.length() -1, sbTel.length(), "**")
-					.replace(sbTel.length() -6, sbTel.length() -5, "**");
-				
+			while(rs.next()) {		
 				Long id = rs.getLong(1);
 				String name = rs.getString(2);
-				String hp = sbHp.toString();
-				String tel = sbTel.toString();
+				String hp = rs.getString(3);
+				String tel = rs.getString(4);
 				
 				PhoneBookVO vo = new PhoneBookVO(id, name, hp, tel);
 				
@@ -91,21 +81,11 @@ public class PhoneBookDAOImpl implements PhoneBookDAO {
 			
 			rs = pstmt.executeQuery();
 			
-			while(rs.next() ) {
-				StringBuffer sbHp = new StringBuffer();
-				sbHp.append(rs.getString(3));
-				sbHp.replace(sbHp.length() -1, sbHp.length(), "**")
-					.replace(sbHp.length() -6, sbHp.length() -5, "**");
-				
-				StringBuffer sbTel = new StringBuffer();
-				sbTel.append(rs.getString(4));
-				sbTel.replace(sbTel.length() -1, sbTel.length(), "**")
-					.replace(sbTel.length() -6, sbTel.length() -5, "**");
-				
+			while(rs.next() ) {			
 				Long id = rs.getLong(1);
 				String name = rs.getString(2);
-				String hp = sbHp.toString();
-				String tel = sbTel.toString();
+				String hp = rs.getString(3);
+				String tel = rs.getString(4);
 				
 				PhoneBookVO vo = new PhoneBookVO(id, name, hp, tel);
 				

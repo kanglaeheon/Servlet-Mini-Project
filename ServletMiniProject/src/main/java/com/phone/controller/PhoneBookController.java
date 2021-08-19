@@ -32,7 +32,6 @@ public class PhoneBookController extends HttpServlet {
 			//	DAO에서 목록을 받아서 jsp에 전달
 			PhoneBookDAO dao = new PhoneBookDAOImpl();
 			List<PhoneBookVO> list = dao.getList();
-			
 			// 요청에 list를 추가
 			// list 객체를 list 키로 추가
 			req.setAttribute("list", list);
@@ -49,7 +48,7 @@ public class PhoneBookController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String actionName = req.getParameter("a");
 		
-		if ("form".equals(actionName)) {	//	a=add
+		if ("form".equals(actionName)) {
 			String name = req.getParameter("name");
 			String hp = req.getParameter("hp");
 			String tel = req.getParameter("tel");
@@ -88,9 +87,7 @@ public class PhoneBookController extends HttpServlet {
 			
 			PhoneBookDAO dao = new PhoneBookDAOImpl();
 			List<PhoneBookVO> list = dao.search(keyword);
-			
-			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/phonelist/index.jsp");
-			rd.forward(req, resp);
+			req.setAttribute("list", list);
 		} else {
 			doGet(req, resp);
 		}
