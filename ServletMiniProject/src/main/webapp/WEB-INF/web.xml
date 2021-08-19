@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>ServletMiniProject</display-name>
+  
+  <welcome-file-list>
+    <welcome-file>/WEB-INF/views/phonelist/index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- Context 초기화 파라미터:
+  - 웹 앱 내의 모든 서블릿, JSP가 공유하는 파라미터
+   -->
+  <context-param>
+  	<param-name>dbuser</param-name>
+  	<param-value>c##bituser</param-value>
+  </context-param>
+  
+  <context-param>
+  	<param-name>dbpass</param-name>
+  	<param-value>bituser</param-value>
+  </context-param>
+  
+  <servlet>
+  	<servlet-name>Controller</servlet-name>
+  	<servlet-class>com.phone.controller.PhoneBookController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Controller</servlet-name>
+  	<url-pattern>/</url-pattern>
+  </servlet-mapping>
+  
+    <!-- Error Page -->
+  <!-- 특정 예외 발생시의 에러 페이지 -->
+  <error-page>
+  	<exception-type>java.lang.Throwable</exception-type>
+  	<location>/WEB-INF/views/errors/error.jsp</location>
+  </error-page>
+  
+  <!-- 특정 상태코드 발생시의 에러 페이지 -->
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/WEB-INF/views/errors/error404.jsp</location>
+  </error-page>
+</web-app>
