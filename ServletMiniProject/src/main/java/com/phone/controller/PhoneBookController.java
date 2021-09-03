@@ -53,7 +53,7 @@ public class PhoneBookController extends HttpServlet {
 			if (success) {
 				resp.sendRedirect(req.getContextPath());
 			} else {
-				resp.sendRedirect(req.getContextPath() + "/WEB-INF/views/phonelist/form.jsp");
+				resp.sendRedirect(req.getContextPath() + "/WEB-INF/views/phonelist/index.jsp");
 			}
 		} else if ("delete".equals(actionName)) {
 			Long id = Long.valueOf(req.getParameter("id"));
